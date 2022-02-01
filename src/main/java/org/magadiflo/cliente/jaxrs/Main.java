@@ -8,13 +8,14 @@ import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.magadiflo.cliente.jaxrs.models.Curso;
+import org.magadiflo.cliente.jaxrs.models.Instructor;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         Client client = ClientBuilder.newClient();
-        WebTarget rootUri = client.target("http://localhost:8080/72.webapp-jaxrs/api").path("/cursos");
+        WebTarget rootUri = client.target("http://127.0.0.1:8080/74.webapp-jaxrs-relaciones/api").path("/cursos");
 
         System.out.println("================ POR ID ================");
         /**
@@ -36,10 +37,12 @@ public class Main {
 
         System.out.println("================ CREANDO ================");
         Curso nuevoCurso = new Curso();
-        nuevoCurso.setNombre("Curso avanzado de GIT");
-        nuevoCurso.setDescripcion("Curso avanzado de GIT");
-        nuevoCurso.setDuracion(780D);
-        nuevoCurso.setInstructor("Andres Guzman");
+        nuevoCurso.setNombre("Diseño CSS 3");
+        nuevoCurso.setDescripcion("Curso avanzado de CSS 3");
+        nuevoCurso.setDuracion(160D);
+        Instructor instructor = new Instructor();
+        instructor.setId(2L);
+        nuevoCurso.setInstructor(instructor);
 
         Entity<Curso> entityHeader = Entity.entity(nuevoCurso, MediaType.APPLICATION_JSON);
         curso = rootUri.request(MediaType.APPLICATION_JSON).post(entityHeader, Curso.class);

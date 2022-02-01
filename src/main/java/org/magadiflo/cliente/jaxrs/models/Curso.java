@@ -2,14 +2,14 @@ package org.magadiflo.cliente.jaxrs.models;
 
 import jakarta.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement //Solo para cuando se trabaje con XML. Para JSON no es necesario
+//@XmlRootElement //Solo para cuando se trabaje con XML. Para JSON no es necesario
 public class Curso {
 
     private Long id;
     private String nombre;
     private String descripcion;
-    private String instructor;
     private Double duracion;
+    private Instructor instructor;
 
     public Long getId() {
         return id;
@@ -35,13 +35,6 @@ public class Curso {
         this.descripcion = descripcion;
     }
 
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(String instructor) {
-        this.instructor = instructor;
-    }
 
     public Double getDuracion() {
         return duracion;
@@ -51,14 +44,22 @@ public class Curso {
         this.duracion = duracion;
     }
 
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Curso{");
         sb.append("id=").append(id);
         sb.append(", nombre='").append(nombre).append('\'');
         sb.append(", descripcion='").append(descripcion).append('\'');
-        sb.append(", instructor='").append(instructor).append('\'');
         sb.append(", duracion=").append(duracion);
+        sb.append(", instructor='").append(instructor).append('\'');
         sb.append('}');
         return sb.toString();
     }
